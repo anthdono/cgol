@@ -9,13 +9,14 @@
 void farfaraway::updateGrid()
 {
 //    this->rectLoc += gc::cellDimension;
+    debug += 12;
     update();
 }
 
 void farfaraway::regen()
 {
     int* temp = new int;
-    for(int i = 0; i < gc::dimension; i++)
+    for(int i = 0; i < cm::numOfCells; i++)
     {
     *temp = arc4random() % 3;
         if(*temp == 1)
@@ -63,15 +64,21 @@ void farfaraway::paintEvent(QPaintEvent*)
     // instantiate the QPainter object
     QPainter bigbadwolf(this);
 
-    // draw grid
-    for(int i = 10; i < gc::dimension; i+=12)
+    for(int i = 0; i < gc::windowDimension+1; i+=gc::cellDimension)
     {
-        bigbadwolf.drawLine(10,i,gc::dimension-2,i);
-        bigbadwolf.drawLine(i,10,i,gc::dimension-2);
+        /*
+        draw grid
+        -2 is used here to tidy the overdrawing of lines
+        */
+
+        bigbadwolf.drawLine(gc::bufferSpace,i+gc::bufferSpace,gc::windowDimension+gc::bufferSpace,i+gc::bufferSpace);
+        bigbadwolf.drawLine(i+gc::bufferSpace,gc::bufferSpace,i+gc::bufferSpace,gc::windowDimension+gc::bufferSpace);
+
     }
 
-    // draw single cell
-//    bigbadwolf.fillRect(QRect(rectLoc,rectLoc,gc::cellDimension,gc::cellDimension),gc::cellFilled);
+
+
+    bigbadwolf.fillRect(QRect(gc::bufferSpace+600,gc::bufferSpace+600,gc::cellDimension,gc::cellDimension),gc::cellFilled);
 }
 
 farfaraway::~farfaraway()
