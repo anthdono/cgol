@@ -6,38 +6,63 @@
 #include <QVector>
 #include <QDebug>
 
+
+
+
+
+
+
+
 void farfaraway::updateGrid()
 {
-//    this->rectLoc += gc::cellDimension;
-    debug += 12;
+    //    this->rectLoc += gc::PXLDIMCELL;
+    //    debug += 12;
+    cellMaths();
     update();
 }
 
 void farfaraway::regen()
 {
-    int* temp = new int;
-    for(int i = 0; i < cm::numOfCells; i++)
+
+
+    int* setState = new int;
+    for (int i = 0; i < cm::NUM_OF_CELLS; i++)
     {
-    *temp = arc4random() % 3;
-        if(*temp == 1)
+        *setState = arc4random() % 3;
+        if (*setState == 1)
         {
-            currentGrid[i] = true;
+            this->cells[i].state = true;
         }
-    else{
-            currentGrid[i] = false;
+        else
+        {
+            this->cells[i].state = false;
         }
-    qDebug()<<currentGrid[i];
     }
 
-    delete temp;
-    temp = nullptr;
+    //    int x = 0;
+    //    int y = 0;
+    for(int i = 0; i < cm::NUM_OF_CELLS; i++)
+    {
+        for(int y = 0; y < cm::ROWS_AND_COLUMNS; y++)
+        {
+            // for y axis
+            if(i >= y*cm::ROWS_AND_COLUMNS && i < (y+1)*cm::ROWS_AND_COLUMNS)
+            {
+                qDebug()<<i<<y;
+            }
+        }
+    }
+
+    delete setState;
+    setState = nullptr;
 }
 
 farfaraway::farfaraway(QWidget *parent) : QWidget(parent)
 {
     // widget config
-    this->setGeometry(gc::windowSize);
+    this->setGeometry(gc::WINDOW_SIZE);
 
+    // set background color
     QPalette pal = this->palette();
     pal.setColor(QPalette::Window, Qt::black);
     this->setPalette(pal);
@@ -49,36 +74,58 @@ farfaraway::farfaraway(QWidget *parent) : QWidget(parent)
     connect(regenButton, SIGNAL(clicked()), this, SLOT(regen()));
 
     // refresh button
-    this->refreshButton->setGeometry(gc::bufferSpace,650,100,50);
-    this->refreshButton->setText("refresh grid");
+    this->refreshButton->setGeometry(gc::WINDOW_BUFFER, gc::BUTTON_Y, gc::BUTTON_W, gc::BUTTON_H);
+    this->refreshButton->setText("refresh");
     this->refreshButton->show();
 
     // regen button
-    this->regenButton->setGeometry(gc::bufferSpace + 100,650,100,50);
-    this->regenButton->setText("regen");
+    this->regenButton->setGeometry(gc::WINDOW_BUFFER + 120, gc::BUTTON_Y, gc::BUTTON_W, gc::BUTTON_H);
+    this->regenButton->setText("generate pattern");
     this->regenButton->show();
 }
 
-void farfaraway::paintEvent(QPaintEvent*)
+void farfaraway::paintEvent(QPaintEvent *)
 {
     // instantiate the QPainter object
     QPainter bigbadwolf(this);
 
-    for(int i = 0; i < gc::windowDimension+1; i+=gc::cellDimension)
+    for (int i = 0; i < gc::WINDOW_PXL_DIM + 1; i += gc::CELL_PXL_DIM)
     {
         /*
         draw grid
         -2 is used here to tidy the overdrawing of lines
         */
 
-        bigbadwolf.drawLine(gc::bufferSpace,i+gc::bufferSpace,gc::windowDimension+gc::bufferSpace,i+gc::bufferSpace);
-        bigbadwolf.drawLine(i+gc::bufferSpace,gc::bufferSpace,i+gc::bufferSpace,gc::windowDimension+gc::bufferSpace);
-
+        bigbadwolf.drawLine(gc::WINDOW_BUFFER, i + gc::WINDOW_BUFFER, gc::WINDOW_PXL_DIM + gc::WINDOW_BUFFER, i + gc::WINDOW_BUFFER);
+        bigbadwolf.drawLine(i + gc::WINDOW_BUFFER, gc::WINDOW_BUFFER, i + gc::WINDOW_BUFFER, gc::WINDOW_PXL_DIM + gc::WINDOW_BUFFER);
     }
 
+    /*
+    for loop of num_of_cells calling cellMaths for each cell
+    */
 
 
-    bigbadwolf.fillRect(QRect(gc::bufferSpace+600,gc::bufferSpace+600,gc::cellDimension,gc::cellDimension),gc::cellFilled);
+//     for (int i = 0; i < cm::NUM_OF_CELLS; i++)
+//     {
+//         if (currentGrid[i])
+//         {
+//             bigbadwolf.fillRect(QRect(gc::WINDOW_BUFFER + 600, gc::WINDOW_BUFFER + 600, gc::CELL_PXL_DIM, gc::CELL_PXL_DIM), gc::FULL_CELL);
+//         }
+//     }
+
+
+    // test cell at 600,600
+     //             bigbadwolf.fillRect(QRect(gc::WINDOW_BUFFER + 600, gc::WINDOW_BUFFER + 600, gc::CELL_PXL_DIM, gc::CELL_PXL_DIM), gc::FULL_CELL);
+}
+
+cell farfaraway::cellMaths()
+{
+
+
+    cell cell;
+    cell.x = 10;
+
+    return cell;
 }
 
 farfaraway::~farfaraway()

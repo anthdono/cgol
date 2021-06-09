@@ -1,6 +1,4 @@
-#include "dragonskeep.h"
 #include "farfaraway.h"
-
 #include <QApplication>
 #include <QMainWindow>
 #include <QPainter>

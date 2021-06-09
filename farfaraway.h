@@ -7,48 +7,64 @@
 #include <QPushButton>
 #include <QVector>
 
-
-// constants used for graphics
-namespace  gc
-{
-    const int rc = 50; // rows and collumns
-    const QBrush cellFilled = QBrush(Qt::white, Qt::SolidPattern);
-    const QBrush cellEmpty = QBrush(Qt::transparent, Qt::SolidPattern);
-    const int gridDimension = 600;
-    const int cellDimension = gc::gridDimension/gc::rc;
-    const int windowDimension = gc::gridDimension+gc::cellDimension;
-    const QPen gridPen= QPen(Qt::white, 1, Qt::SolidLine);
-    const int bufferSpace = 10;
-    const QRect windowSize(100,100,gc::windowDimension + gc::bufferSpace*2, gc::windowDimension + gc::bufferSpace + 100); // +100 for buttons
-}
-
-// constants used for cell maths
+// constants used for cell calculations
 namespace cm
 {
-    const int numOfCells = gc::rc*gc::rc;
-    const int cellNorth = -gc::rc;
-    const int cellSouth = gc::rc;
-    const int cellEast = 1;
-    const int cellWest = -1;
+    const int ROWS_AND_COLUMNS = 50;
+    const int NUM_OF_CELLS = cm::ROWS_AND_COLUMNS * cm::ROWS_AND_COLUMNS;
+    const int NORTH_CELL = -(cm::ROWS_AND_COLUMNS);
+    const int SOUTH_CELL = cm::ROWS_AND_COLUMNS;
+    const int EAST_CELL = 1;
+    const int WEST_CELL = -1;
 }
+
+// constants used for graphics
+namespace gc
+{
+    const int SCREEN_POS = 100;
+    const QBrush FULL_CELL = QBrush(Qt::white, Qt::SolidPattern);
+    const QBrush EMPTY_CELL = QBrush(Qt::transparent, Qt::SolidPattern);
+    const int GRID_PXL_DIM = 600;
+    const int CELL_PXL_DIM = gc::GRID_PXL_DIM / cm::ROWS_AND_COLUMNS;
+    const int WINDOW_PXL_DIM = gc::GRID_PXL_DIM + gc::CELL_PXL_DIM;
+    const QPen GRID_PEN_STROKE = QPen(Qt::white, 1, Qt::SolidLine);
+    const int WINDOW_BUFFER = 10;
+    const QRect WINDOW_SIZE(gc::SCREEN_POS,gc::SCREEN_POS, gc::WINDOW_PXL_DIM + (gc::WINDOW_BUFFER*2), gc::WINDOW_PXL_DIM + gc::WINDOW_BUFFER + 100
+                            ); // +100 for buttons
+
+    const int BUTTON_Y = 650;
+    const int BUTTON_W = 120;
+    const int BUTTON_H = 50;
+
+}
+
+
+struct cell
+{
+   int x;
+   int y;
+   bool state;
+};
 
 class farfaraway : public QWidget
 {
     Q_OBJECT
 public:
-    int debug = gc::bufferSpace;
+    int debug = gc::WINDOW_BUFFER;
     // widget constructor
     explicit farfaraway(QWidget *parent = nullptr);
     // button for refreshing canvas
-    QPushButton* refreshButton = new QPushButton(this);
+    QPushButton *refreshButton = new QPushButton(this);
     // button to generate new random vector
-    QPushButton* regenButton = new QPushButton(this);
+    QPushButton *regenButton = new QPushButton(this);
     // coords of singular cell – whilst debugging
-//    int rectLoc = gc::bufferSpace + gc::cellDimension;
+    //    int rectLoc = gc::BUFFERSPACE + gc::PXLDIMCELL;
     // grid values
-    QVector<bool> currentGrid = QVector<bool>(cm::numOfCells);
+    QVector<cell> cells = QVector<cell>(cm::NUM_OF_CELLS);
     // widget's paint event
-    virtual void paintEvent(QPaintEvent*);
+    virtual void paintEvent(QPaintEvent *);
+    // maths for cells
+    cell cellMaths();
     // widget deconstructor
     ~farfaraway();
 public slots:
@@ -57,3 +73,5 @@ public slots:
     void regen();
 };
 #endif // FARFARAWAY_H
+
+
