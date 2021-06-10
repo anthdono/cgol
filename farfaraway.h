@@ -22,14 +22,14 @@ namespace cm
 namespace gc
 {
     const int SCREEN_POS = 100;
-    const QBrush FULL_CELL = QBrush(Qt::white, Qt::SolidPattern);
-    const QBrush EMPTY_CELL = QBrush(Qt::transparent, Qt::SolidPattern);
+    const QBrush FULL_CELL = QBrush(Qt::black, Qt::SolidPattern);
+//    const QBrush EMPTY_CELL = QBrush(Qt::transparent, Qt::SolidPattern);
     const int GRID_PXL_DIM = 600;
     const int CELL_PXL_DIM = gc::GRID_PXL_DIM / cm::ROWS_AND_COLUMNS;
-    const int WINDOW_PXL_DIM = gc::GRID_PXL_DIM + gc::CELL_PXL_DIM;
+//    const int WINDOW_PXL_DIM = gc::GRID_PXL_DIM ;
     const QPen GRID_PEN_STROKE = QPen(Qt::white, 1, Qt::SolidLine);
     const int WINDOW_BUFFER = 10;
-    const QRect WINDOW_SIZE(gc::SCREEN_POS,gc::SCREEN_POS, gc::WINDOW_PXL_DIM + (gc::WINDOW_BUFFER*2), gc::WINDOW_PXL_DIM + gc::WINDOW_BUFFER + 100
+    const QRect WINDOW_SIZE(gc::SCREEN_POS,gc::SCREEN_POS, gc::GRID_PXL_DIM + (gc::WINDOW_BUFFER*2), gc::GRID_PXL_DIM + gc::WINDOW_BUFFER + 100
                             ); // +100 for buttons
 
     const int BUTTON_Y = 650;
