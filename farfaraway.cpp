@@ -6,169 +6,188 @@
 #include <QVector>
 #include <QDebug>
 #include <QStyleFactory>
-
-
-
-
-
-
-
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QString>
+#include <QPair>
+#include <QFile>
+#include <QDir>
+#include <iostream>
+#include <string>
+#include <QLocale>
 
 void farfaraway::updateGrid()
 {
-    //    this->rectLoc += gc::PXLDIMCELL;
-    //    debug += 12;
-//    cellMaths();
-    update();
+	this->golCheckCells(); // add number of neighbours to cell struct
+	update();	// refresh paint event
 }
+
+
 
 void farfaraway::regen()
 {
+	int *setState = new int;
+	for (int i = 0; i < cm::NUM_OF_CELLS; i++)
+	{
+		*setState = arc4random() % 5;
+		if (*setState == 1)
+		{
+			this->cells[i].state = true;
+		}
+		else
+		{
+			this->cells[i].state = false;
+		}
+	}
 
+	// for x axis
+	for (int i = 0; i < cm::NUM_OF_CELLS; i++)
+	{
+		cells[i].x = i % 50;
+	}
 
-    int* setState = new int;
-    for (int i = 0; i < cm::NUM_OF_CELLS; i++)
-    {
-        *setState = arc4random() % 3;
-        if (*setState == 1)
-        {
-            this->cells[i].state = true;
-        }
-        else
-        {
-            this->cells[i].state = false;
-        }
-    }
+	// for y axis
+	for (int i = 0; i < cm::NUM_OF_CELLS; i++)
+	{
+		for (int y = 0; y < cm::ROWS_AND_COLUMNS; y++)
+		{
+			if (i >= y * cm::ROWS_AND_COLUMNS && i < (y + 1) * cm::ROWS_AND_COLUMNS)
+			{
+				this->cells[i].y = y;
+			}
+		}
+	}
 
-    //    int x = 0;
-    //    int y = 0;
+	update();
 
-    // for 10 * 5 we inc by 12 on x axis
-    // where 0 = 0
-    // where 1 = 12
-    // where 49 = 600
-    //
+	delete setState;
+	setState = nullptr;
+}
 
-    for(int i = 0; i < cm::NUM_OF_CELLS; i++)
-    {
-        cells[i].x = i%50;
-    }
+void farfaraway::debugging()
+{
+//	for(int i = 0; i < cm::NUM_OF_CELLS; i++)
+//		{
+//			qDebug()<<cells[i].x<<" "<<cells[i].y<<"\n";
+//		}
 
+	qDebug()<<cellsJson;
 
-
-    for(int i = 0; i < cm::NUM_OF_CELLS; i++)
-    {
-        for(int y = 0; y < cm::ROWS_AND_COLUMNS; y++)
-        {
-            // for y axis
-            if(i >= y*cm::ROWS_AND_COLUMNS && i < (y+1)*cm::ROWS_AND_COLUMNS)
-            {
-//                qDebug()<<i<<y;
-                this->cells[i].y = y;
-//                qDebug()<<cells[i].y;
-
-            }
-        }
-    }
-
-
-    for(int i = 0; i < cm::NUM_OF_CELLS; i++)
-    {
-        qDebug()<<cells[i].x<<" "<<cells[i].y<<"\n";
-    }
-
-
-
-
-
-
-    delete setState;
-    setState = nullptr;
 }
 
 farfaraway::farfaraway(QWidget *parent) : QWidget(parent)
 {
-    // widget config
-    this->setGeometry(gc::WINDOW_SIZE);
-//    this->setStyle(QStyleFactory::create("macOS"));
+	// widget config
+	this->setGeometry(gc::WINDOW_SIZE);
+	this->show();
 
-    // set background color
-//    QPalette pal = this->palette();
-//    pal.setColor(QPalette::Window, Qt::black);
-//    this->setPalette(pal);
-//    this->setAutoFillBackground(true);
-    this->show();
+	// connecting signals with slots
+	connect(refreshButton, SIGNAL(clicked()), this, SLOT(updateGrid()));
+	connect(regenButton, SIGNAL(clicked()), this, SLOT(regen()));
+//	connect(debugButton, SIGNAL(clicked()), this, SLOT(debugging()));
+	connect(saveToJsonButton, SIGNAL(clicked()),this, SLOT(saveToJson()));
 
-    // connecting signals with slots
-    connect(refreshButton, SIGNAL(clicked()), this, SLOT(updateGrid()));
-    connect(regenButton, SIGNAL(clicked()), this, SLOT(regen()));
+	// refresh button
+	this->refreshButton->move(0+gc::WINDOW_BUFFER, gc::BUTTON_Y);
+	this->refreshButton->setText("refresh");
+	this->refreshButton->show();
 
-    // refresh button
-    this->refreshButton->move(gc::WINDOW_BUFFER,gc::BUTTON_Y);
-    this->refreshButton->setText("refresh");
-//    this->refreshButton->setMinimumWidth(100);
-//    this->refreshButton->mini
+	// regen button
+	this->regenButton->move(100+gc::WINDOW_BUFFER, gc::BUTTON_Y);
+	this->regenButton->setText("generate");
+	this->regenButton->show();
 
-//    auto var = QStyleFactory::create("macOS");
-//    qDebug()<<typeid(var).name();
-//    this->refreshButton->setStyle(var);
-    this->refreshButton->show();
+	// debug button
+//	this->debugButton->move(200+gc::WINDOW_BUFFER, gc::BUTTON_Y);
+//	this->debugButton->setText("debug");
 
-    // regen button
-    this->regenButton->move(100,gc::BUTTON_Y);
-    this->regenButton->setText("generate");
-    this->regenButton->show();
+	// save to json button
+	this->saveToJsonButton->move(300+gc::WINDOW_BUFFER, gc::BUTTON_Y);
+	this->saveToJsonButton->setText("save");
 }
 
 void farfaraway::paintEvent(QPaintEvent *)
 {
-    // instantiate the QPainter object
-    QPainter bigbadwolf(this);
+	// instantiate the QPainter object
+	QPainter bigbadwolf(this);
 
-    for (int i = 0; i < gc::CELL_PXL_DIM*cm::ROWS_AND_COLUMNS+1; i += gc::CELL_PXL_DIM)
-    {
-        /*
-        draw grid
-        -2 is used here to tidy the overdrawing of lines
-        */
+	for (int i = 0; i < gc::CELL_PXL_DIM * cm::ROWS_AND_COLUMNS + 1; i += gc::CELL_PXL_DIM)
+	{
+		bigbadwolf.drawLine(gc::WINDOW_BUFFER, i + gc::WINDOW_BUFFER, gc::CELL_PXL_DIM * cm::ROWS_AND_COLUMNS + gc::WINDOW_BUFFER, i + gc::WINDOW_BUFFER);
+		bigbadwolf.drawLine(i + gc::WINDOW_BUFFER, gc::WINDOW_BUFFER, i + gc::WINDOW_BUFFER, gc::CELL_PXL_DIM * cm::ROWS_AND_COLUMNS + gc::WINDOW_BUFFER);
+	}
 
-        bigbadwolf.drawLine(gc::WINDOW_BUFFER, i + gc::WINDOW_BUFFER, gc::CELL_PXL_DIM*cm::ROWS_AND_COLUMNS + gc::WINDOW_BUFFER, i + gc::WINDOW_BUFFER);
-        bigbadwolf.drawLine(i + gc::WINDOW_BUFFER, gc::WINDOW_BUFFER, i + gc::WINDOW_BUFFER, gc::CELL_PXL_DIM*cm::ROWS_AND_COLUMNS + gc::WINDOW_BUFFER);
-    }
+	// draw the cells
+	for (int i = 0; i < cm::NUM_OF_CELLS; i++)
+	{
+		if (cells[i].state == true)
+		{
+			bigbadwolf.fillRect(QRect(gc::WINDOW_BUFFER + cells[i].x * gc::CELL_PXL_DIM, gc::WINDOW_BUFFER + cells[i].y * gc::CELL_PXL_DIM, gc::CELL_PXL_DIM, gc::CELL_PXL_DIM), gc::FULL_CELL);
+		}
+	}
+}
 
-    /*
-    for loop of num_of_cells calling cellMaths for each cell
-    */
+void farfaraway::golCheckCells()
+{
+	// the temp variable to hold number of cell neighbours before adding to cell struct instances
+	// for each cell
+	int n;
+	for (int i = 0; i < cm::NUM_OF_CELLS; i++)
+	{
+		n = 0;
+
+		//	check northern cell
+		if (i > cm::ROWS_AND_COLUMNS)	//	check if cell is in top most row (cannot have north cell)
+			if (cells[i+cm::NORTH_CELL].state)
+				n++;
+
+		// check southern cell
+		if (i < cm::NUM_OF_CELLS-cm::ROWS_AND_COLUMNS)
+			if (cells[i+cm::SOUTH_CELL].state)
+				n++;
 
 
-//     for (int i = 0; i < cm::NUM_OF_CELLS; i++)
-//     {
-//         if (currentGrid[i])
-//         {
-//             bigbadwolf.fillRect(QRect(gc::WINDOW_BUFFER + 600, gc::WINDOW_BUFFER + 600, gc::CELL_PXL_DIM, gc::CELL_PXL_DIM), gc::FULL_CELL);
-//         }
-//     }
+		// check cell east
+		// check cell west
 
-    int val = 2499;
-    // test cell at 600,600
-                  bigbadwolf.fillRect(QRect(gc::WINDOW_BUFFER + cells[val].x*gc::CELL_PXL_DIM, gc::WINDOW_BUFFER + cells[val].y*gc::CELL_PXL_DIM, gc::CELL_PXL_DIM, gc::CELL_PXL_DIM), gc::FULL_CELL);
-//                  bigbadwolf.fillRect(QRect(gc::WINDOW_BUFFER + 600, gc::WINDOW_BUFFER + 600, gc::CELL_PXL_DIM, gc::CELL_PXL_DIM), gc::FULL_CELL);
+		cells[i].neighbours = n;
+//		qDebug()<<n;
+	}
 
 }
-cell farfaraway::cellMaths()
+
+void farfaraway::golPerformChanges()
 {
 
-
-    cell cell;
-    cell.x = 10;
-
-    return cell;
 }
+
+void farfaraway::saveToJson()
+{
+	QDir::setCurrent("../Resources/");
+	QFile file;
+	file.setFileName("save.json");
+	QJsonArray array;
+
+	for (int i = 0; i < cm::NUM_OF_CELLS; i++)
+	{
+		array.append(QJsonArray() << cells[i].x << cells[i].y << cells[i].state);
+	}
+
+	QJsonDocument doc(array);
+	file.open(QIODevice::WriteOnly|QIODevice::Text);
+	file.write(doc.toJson());
+	file.close();
+
+}
+
+
+
 
 farfaraway::~farfaraway()
 {
-    delete refreshButton;
-    refreshButton = nullptr;
-    delete regenButton;
-    regenButton = nullptr;
+	delete refreshButton;
+	refreshButton = nullptr;
+	delete regenButton;
+	regenButton = nullptr;
 }
