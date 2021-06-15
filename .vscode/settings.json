@@ -1,6 +1,8 @@
 {
 	"C_Cpp.errorSquiggles": "Disabled",
 	"files.associations": {
-		"qdebug": "cpp"
-	}
+    "qdebug": "cpp",
+    "locale": "cpp",
+    "string": "cpp"
+  }
 }
