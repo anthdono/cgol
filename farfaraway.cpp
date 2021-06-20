@@ -93,27 +93,31 @@ void farfaraway::checkCells()
   for (int i = 0; i < constant::NUM_OF_CELLS; i++)
   {
 
-    // north cell ––working––
+    // NORTH CELL ––working––
     if (i > ROWS_AND_COLUMNS - 1)
       if (cells[i + constant::NORTH_CELL].state)
         cells[i].neighbours++;
 
-    // south cell ––working––
+    // SOUTH CELL ––working––
     if (i < constant::NUM_OF_CELLS - ROWS_AND_COLUMNS - 1)
       if (cells[i + constant::SOUTH_CELL].state)
         cells[i].neighbours++;
 
-    // east cell ––working––
+    // EAST CELL ––working––
     if (i % ROWS_AND_COLUMNS < ROWS_AND_COLUMNS - 1)
       if (cells[i + constant::EAST_CELL].state)
         cells[i].neighbours++;
 
-    // west cell ––working––
+    // WEST CELL ––working––
     if (i % ROWS_AND_COLUMNS > 0)
       if (cells[i + constant::WEST_CELL].state)
         cells[i].neighbours++;
 
-    // north east
+    /* NORTH EAST
+     * – we need to avoid top most row and far right column
+     * – relative to the cell in consideration, the index will be the cell index minus ROWS_AND_COLLUMNS plus 1
+     */
+
 
     // north west
 
