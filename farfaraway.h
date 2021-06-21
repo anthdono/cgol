@@ -5,8 +5,8 @@
 #include <QPushButton>
 #include <QJsonObject>
 
-#define ROWS_AND_COLUMNS 50
-#define SPAWN_DENSITY 2
+#define ROWS_AND_COLUMNS 80
+#define SPAWN_DENSITY 10
 
 namespace constant
 {
@@ -16,10 +16,9 @@ namespace constant
   const int EAST_CELL = 1;
   const int WEST_CELL = -1;
   const int SCREEN_POS = 100;
-  const QBrush FULL_CELL = QBrush(Qt::white, Qt::SolidPattern);
+  const QBrush FULL_CELL = QBrush(Qt::black, Qt::SolidPattern);
   const int GRID_PXL_DIM = 12*ROWS_AND_COLUMNS;
   const int CELL_PXL_DIM = GRID_PXL_DIM / ROWS_AND_COLUMNS;
-  const QPen GRID_PEN_STROKE = QPen(Qt::white, 1, Qt::SolidLine);
   const int WINDOW_BUFFER = 10;
   const QRect WINDOW_SIZE(SCREEN_POS, SCREEN_POS, GRID_PXL_DIM + (WINDOW_BUFFER * 2), GRID_PXL_DIM + WINDOW_BUFFER + 100); // +100 for buttons
   const int BUTTON_Y = GRID_PXL_DIM + 20;

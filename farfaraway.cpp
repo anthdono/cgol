@@ -117,13 +117,25 @@ void farfaraway::checkCells()
      * – we need to avoid top most row and far right column
      * – relative to the cell in consideration, the index will be the cell index minus ROWS_AND_COLLUMNS plus 1
      */
-
+     if ((i > ROWS_AND_COLUMNS -1) && (i % ROWS_AND_COLUMNS < ROWS_AND_COLUMNS - 1))
+       if (cells[i + constant::EAST_CELL + constant::NORTH_CELL].state)
+         cells[i].neighbours++;
 
     // north west
+    if ((i > ROWS_AND_COLUMNS - 1) && (i % ROWS_AND_COLUMNS > 0))
+      if (cells[i + constant::NORTH_CELL + constant::WEST_CELL].state)
+        cells[i].neighbours++;
 
     // south east
+    if ((i < constant::NUM_OF_CELLS - ROWS_AND_COLUMNS - 1) && (i % ROWS_AND_COLUMNS < ROWS_AND_COLUMNS - 1))
+      if (cells[i + constant::SOUTH_CELL + constant::EAST_CELL].state)
+        cells[i].neighbours++;
 
     // south west
+    if ((i < constant::NUM_OF_CELLS - ROWS_AND_COLUMNS - 1) && (i % ROWS_AND_COLUMNS > 0))
+      if (cells[i + constant::SOUTH_CELL + constant::WEST_CELL].state)
+        cells[i].neighbours++;
+
   }
 }
 
@@ -186,5 +198,6 @@ void farfaraway::loadCustom()
   cells[220].state = true;
   cells[220 + ROWS_AND_COLUMNS].state = true;
   cells[220 - ROWS_AND_COLUMNS].state = true;
+  cells[221].state = true;
   update();
 }
