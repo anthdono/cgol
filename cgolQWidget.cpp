@@ -1,10 +1,10 @@
-#include "farfaraway.h"
+#include "cgolQWidget.h"
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QDir>
 #include <QDebug>
 
-farfaraway::farfaraway(QWidget *parent) : QWidget(parent)
+CgolQWidget::CgolQWidget(QWidget *parent) : QWidget(parent)
 {
   this->setGeometry(constant::WINDOW_SIZE);
   this->show();
@@ -13,23 +13,29 @@ farfaraway::farfaraway(QWidget *parent) : QWidget(parent)
   connect(regenButton, SIGNAL(clicked()), this, SLOT(regenerate()));
   connect(saveToJsonButton, SIGNAL(clicked()), this, SLOT(saveToJson()));
   connect(loadCustomButton, SIGNAL(clicked()), this, SLOT(loadCustom()));
+  connect(setGridSizeLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(setGridSize(const QString&)));
 
-  this->updateButton->move(0 + constant::WINDOW_BUFFER, constant::BUTTON_Y);
+  this->updateButton->move(((constant::GRID_PXL_DIM/7) * 0) + constant::WINDOW_BUFFER, constant::BUTTON_Y);
   this->updateButton->setText("refresh");
   this->updateButton->show();
 
-  this->regenButton->move(100 + constant::WINDOW_BUFFER, constant::BUTTON_Y);
+  this->regenButton->move(((constant::GRID_PXL_DIM/7) * 1) + constant::WINDOW_BUFFER, constant::BUTTON_Y);
   this->regenButton->setText("generate");
   this->regenButton->show();
 
-  this->saveToJsonButton->move(300 + constant::WINDOW_BUFFER, constant::BUTTON_Y);
+  this->saveToJsonButton->move(((constant::GRID_PXL_DIM/7) * 2) + constant::WINDOW_BUFFER, constant::BUTTON_Y);
   this->saveToJsonButton->setText("save");
+  this->saveToJsonButton->show();
 
-  this->loadCustomButton->move(500 + constant::WINDOW_BUFFER, constant::BUTTON_Y);
+  this->loadCustomButton->move(((constant::GRID_PXL_DIM/7) * 3) + constant::WINDOW_BUFFER, constant::BUTTON_Y);
   this->loadCustomButton->setText("load");
+  this->loadCustomButton->show();
+
+  this->setGridSizeLineEdit->move(((constant::GRID_PXL_DIM/7) * 4) + constant::WINDOW_BUFFER, constant::LINEEDIT_Y);
+  this->setGridSizeLineEdit->show();
 }
 
-void farfaraway::updateGrid()
+void CgolQWidget::updateGrid()
 {
   this->checkCells();
   this->performChanges();
@@ -37,7 +43,7 @@ void farfaraway::updateGrid()
   update();
 }
 
-void farfaraway::regenerate()
+void CgolQWidget::regenerate()
 {
   int *setState = new int;
 
@@ -62,7 +68,7 @@ void farfaraway::regenerate()
   setState = nullptr;
 }
 
-void farfaraway::paintEvent(QPaintEvent *)
+void CgolQWidget::paintEvent(QPaintEvent *)
 {
   QPainter bigbadwolf(this);
   for (int i = 0; i < constant::CELL_PXL_DIM * ROWS_AND_COLUMNS + 1; i += constant::CELL_PXL_DIM)
@@ -77,13 +83,9 @@ void farfaraway::paintEvent(QPaintEvent *)
       bigbadwolf.fillRect(QRect(constant::WINDOW_BUFFER + cells[i].x * constant::CELL_PXL_DIM, constant::WINDOW_BUFFER + cells[i].y * constant::CELL_PXL_DIM, constant::CELL_PXL_DIM, constant::CELL_PXL_DIM), constant::FULL_CELL);
     }
   }
-
-  //  int x = 49;
-  //  int y = 0;
-  //  bigbadwolf.fillRect(QRect(constant::WINDOW_BUFFER + x * constant::CELL_PXL_DIM, constant::WINDOW_BUFFER + y * constant::CELL_PXL_DIM, constant::CELL_PXL_DIM, constant::CELL_PXL_DIM), Qt::red);
 }
 
-void farfaraway::checkCells()
+void CgolQWidget::checkCells()
 {
 
   // reset neighbours
@@ -139,7 +141,7 @@ void farfaraway::checkCells()
   }
 }
 
-void farfaraway::performChanges()
+void CgolQWidget::performChanges()
 {
 
   cellsNextGen = cells;
@@ -165,7 +167,7 @@ void farfaraway::performChanges()
   }
 }
 
-void farfaraway::saveToJson()
+void CgolQWidget::saveToJson()
 {
   QDir::setCurrent("../Resources/");
   QFile file;
@@ -181,7 +183,7 @@ void farfaraway::saveToJson()
   file.close();
 }
 
-void farfaraway::loadCustom()
+void CgolQWidget::loadCustom()
 {
 
   for (int i = 0; i < constant::NUM_OF_CELLS; i++)
@@ -200,4 +202,9 @@ void farfaraway::loadCustom()
   cells[220 - ROWS_AND_COLUMNS].state = true;
   cells[221].state = true;
   update();
+}
+
+void CgolQWidget::setGridSize(const QString& str)
+{
+  qDebug()<<str;
 }

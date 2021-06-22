@@ -1,11 +1,13 @@
-#ifndef FARFARAWAY_H
-#define FARFARAWAY_H
+#ifndef CGOLQWIDGET_H
+#define CGOLQWIDGET_H 
 
 #include <QPainter>
 #include <QPushButton>
 #include <QJsonObject>
+#include <QString>
+#include <QLineEdit>
 
-#define ROWS_AND_COLUMNS 80
+#define ROWS_AND_COLUMNS 50
 #define SPAWN_DENSITY 10
 
 namespace constant
@@ -21,9 +23,8 @@ namespace constant
   const int CELL_PXL_DIM = GRID_PXL_DIM / ROWS_AND_COLUMNS;
   const int WINDOW_BUFFER = 10;
   const QRect WINDOW_SIZE(SCREEN_POS, SCREEN_POS, GRID_PXL_DIM + (WINDOW_BUFFER * 2), GRID_PXL_DIM + WINDOW_BUFFER + 100); // +100 for buttons
-  const int BUTTON_Y = GRID_PXL_DIM + 20;
-  const int BUTTON_W = 50;
-  const int BUTTON_H = 20;
+  const int BUTTON_Y = GRID_PXL_DIM + GRID_PXL_DIM / 25;
+  const int LINEEDIT_Y =  GRID_PXL_DIM + GRID_PXL_DIM / 21;
 }
 
 struct cell
@@ -34,12 +35,12 @@ struct cell
   int neighbours;
 };
 
-class farfaraway : public QWidget
+class CgolQWidget : public QWidget
 {
   Q_OBJECT
 
 public:
-  explicit farfaraway(QWidget *parent = nullptr);
+  explicit CgolQWidget(QWidget *parent = nullptr);
   virtual void paintEvent(QPaintEvent *);
   void checkCells();
   void performChanges();
@@ -50,11 +51,14 @@ public:
   QVector<cell> cells = QVector<cell>(constant::NUM_OF_CELLS);
   QVector<cell> cellsNextGen = QVector<cell>(constant::NUM_OF_CELLS);
   QJsonObject cellsJson;
+  QLineEdit *setGridSizeLineEdit = new QLineEdit(this);
+  const QString *str = new const QString();
 
 public slots:
   void updateGrid();
   void regenerate();
   void saveToJson();
   void loadCustom();
+  void setGridSize(const QString& str);
 };
-#endif // FARFARAWAY_H
+#endif // CGOLQWIDGET_H
