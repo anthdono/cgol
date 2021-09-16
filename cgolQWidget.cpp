@@ -3,6 +3,7 @@
 #include <QJsonArray>
 #include <QDir>
 #include <QDebug>
+#include <QRandomGenerator>
 
 void CgolQWidget::varUpdates()
 {
@@ -78,7 +79,7 @@ void CgolQWidget::regenerate()
 
   for (int i = 0; i < NUM_OF_CELLS; i++)
   {
-    *setState = arc4random() % SPAWN_DENSITY;
+    *setState = QRandomGenerator::global()->bounded(SPAWN_DENSITY);
 
     if (*setState == 1)
       this->cells[i].state = true;

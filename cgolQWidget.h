@@ -1,5 +1,5 @@
 #ifndef CGOLQWIDGET_H
-#define CGOLQWIDGET_H 
+#define CGOLQWIDGET_H
 
 #include <QPainter>
 #include <QPushButton>
