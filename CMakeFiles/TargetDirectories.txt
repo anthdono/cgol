@@ -1,0 +1,4 @@
+/home/deb/localdir/cgol/CMakeFiles/rebuild_cache.dir
+/home/deb/localdir/cgol/CMakeFiles/edit_cache.dir
+/home/deb/localdir/cgol/CMakeFiles/cgol.dir
+/home/deb/localdir/cgol/CMakeFiles/cgol_autogen.dir
