@@ -1,3 +1,7 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
   "CXX"
@@ -14,7 +18,6 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "QT_CORE_LIB"
   "QT_GUI_LIB"
-  "QT_NO_DEBUG"
   "QT_WIDGETS_LIB"
   )
 
@@ -27,6 +30,10 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/deb/Qt/6.1.3/gcc_64/include/QtCore"
   "/home/deb/Qt/6.1.3/gcc_64/mkspecs/linux-g++"
   "/home/deb/Qt/6.1.3/gcc_64/include/QtGui"
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
   )
 
 # Targets to which this target links.
