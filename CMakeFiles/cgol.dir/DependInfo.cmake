@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/deb/localdir/cgol/cgolQApp.cpp" "/home/deb/localdir/cgol/CMakeFiles/cgol.dir/cgolQApp.cpp.o"
-  "/home/deb/localdir/cgol/cgolQWidget.cpp" "/home/deb/localdir/cgol/CMakeFiles/cgol.dir/cgolQWidget.cpp.o"
-  "/home/deb/localdir/cgol/cgol_autogen/mocs_compilation.cpp" "/home/deb/localdir/cgol/CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.o"
+  "/home/deb/workspace/cgol/cgolQApp.cpp" "/home/deb/workspace/cgol/CMakeFiles/cgol.dir/cgolQApp.cpp.o"
+  "/home/deb/workspace/cgol/cgolQWidget.cpp" "/home/deb/workspace/cgol/CMakeFiles/cgol.dir/cgolQWidget.cpp.o"
+  "/home/deb/workspace/cgol/cgol_autogen/mocs_compilation.cpp" "/home/deb/workspace/cgol/CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

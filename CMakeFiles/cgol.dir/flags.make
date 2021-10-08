@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
 
-CXX_INCLUDES = -I/home/deb/localdir/cgol -I/home/deb/localdir/cgol/cgol_autogen/include -isystem /home/deb/Qt/6.1.3/gcc_64/include/QtWidgets -isystem /home/deb/Qt/6.1.3/gcc_64/include -isystem /home/deb/Qt/6.1.3/gcc_64/include/QtCore -isystem /home/deb/Qt/6.1.3/gcc_64/mkspecs/linux-g++ -isystem /home/deb/Qt/6.1.3/gcc_64/include/QtGui
+CXX_INCLUDES = -I/home/deb/workspace/cgol -I/home/deb/workspace/cgol/cgol_autogen/include -isystem /home/deb/Qt/6.1.3/gcc_64/include/QtWidgets -isystem /home/deb/Qt/6.1.3/gcc_64/include -isystem /home/deb/Qt/6.1.3/gcc_64/include/QtCore -isystem /home/deb/Qt/6.1.3/gcc_64/mkspecs/linux-g++ -isystem /home/deb/Qt/6.1.3/gcc_64/include/QtGui
 
 CXX_FLAGS =  -Wall -g -fPIC -pthread -std=gnu++17
 

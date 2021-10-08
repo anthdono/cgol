@@ -53,10 +53,10 @@ RM = /home/deb/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.5080.54/bin/cm
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/deb/localdir/cgol
+CMAKE_SOURCE_DIR = /home/deb/workspace/cgol
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/deb/localdir/cgol
+CMAKE_BINARY_DIR = /home/deb/workspace/cgol
 
 # Utility rule file for cgol_autogen.
 
@@ -67,8 +67,8 @@ include CMakeFiles/cgol_autogen.dir/compiler_depend.make
 include CMakeFiles/cgol_autogen.dir/progress.make
 
 CMakeFiles/cgol_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/deb/localdir/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target cgol"
-	/home/deb/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.5080.54/bin/cmake/linux/bin/cmake -E cmake_autogen /home/deb/localdir/cgol/CMakeFiles/cgol_autogen.dir/AutogenInfo.json Debug
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/deb/workspace/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target cgol"
+	/home/deb/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.5080.54/bin/cmake/linux/bin/cmake -E cmake_autogen /home/deb/workspace/cgol/CMakeFiles/cgol_autogen.dir/AutogenInfo.json Debug
 
 cgol_autogen: CMakeFiles/cgol_autogen
 cgol_autogen: CMakeFiles/cgol_autogen.dir/build.make
@@ -83,6 +83,6 @@ CMakeFiles/cgol_autogen.dir/clean:
 .PHONY : CMakeFiles/cgol_autogen.dir/clean
 
 CMakeFiles/cgol_autogen.dir/depend:
-	cd /home/deb/localdir/cgol && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/deb/localdir/cgol /home/deb/localdir/cgol /home/deb/localdir/cgol /home/deb/localdir/cgol /home/deb/localdir/cgol/CMakeFiles/cgol_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/deb/workspace/cgol && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/deb/workspace/cgol /home/deb/workspace/cgol /home/deb/workspace/cgol /home/deb/workspace/cgol /home/deb/workspace/cgol/CMakeFiles/cgol_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/cgol_autogen.dir/depend
 

@@ -1,28 +1,28 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
-Change Dir: /home/deb/localdir/cgol/CMakeFiles/CMakeTmp
+Change Dir: /home/deb/workspace/cgol/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake cmTC_efec2/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_efec2.dir/build.make CMakeFiles/cmTC_efec2.dir/build
-gmake[1]: Entering directory '/home/deb/localdir/cgol/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_efec2.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD -o CMakeFiles/cmTC_efec2.dir/src.c.o -c /home/deb/localdir/cgol/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_efec2
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_efec2.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD CMakeFiles/cmTC_efec2.dir/src.c.o -o cmTC_efec2 
-/usr/bin/ld: CMakeFiles/cmTC_efec2.dir/src.c.o: in function `main':
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_373ab/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_373ab.dir/build.make CMakeFiles/cmTC_373ab.dir/build
+gmake[1]: Entering directory '/home/deb/workspace/cgol/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_373ab.dir/src.c.o
+/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_373ab.dir/src.c.o -c /home/deb/workspace/cgol/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_373ab
+/home/deb/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.5080.54/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_373ab.dir/link.txt --verbose=1
+/usr/bin/cc CMakeFiles/cmTC_373ab.dir/src.c.o -o cmTC_373ab 
+/usr/bin/ld: CMakeFiles/cmTC_373ab.dir/src.c.o: in function `main':
 src.c:(.text+0x2f): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x3b): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x47): undefined reference to `pthread_cancel'
 /usr/bin/ld: src.c:(.text+0x58): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-gmake[1]: *** [CMakeFiles/cmTC_efec2.dir/build.make:106: cmTC_efec2] Error 1
-gmake[1]: Leaving directory '/home/deb/localdir/cgol/CMakeFiles/CMakeTmp'
-gmake: *** [Makefile:140: cmTC_efec2/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_373ab.dir/build.make:99: cmTC_373ab] Error 1
+gmake[1]: Leaving directory '/home/deb/workspace/cgol/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_373ab/fast] Error 2
 
 
 Source file was:
 #include <pthread.h>
 
-void* test_func(void* data)
+static void* test_func(void* data)
 {
   return data;
 }

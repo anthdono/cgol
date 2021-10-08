@@ -1,4 +1,4 @@
-# Install script for directory: /home/deb/localdir/cgol
+# Install script for directory: /home/deb/workspace/cgol
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/deb/localdir/cgol/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/deb/workspace/cgol/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

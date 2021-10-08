@@ -53,10 +53,10 @@ RM = /home/deb/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.5080.54/bin/cm
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/deb/localdir/cgol
+CMAKE_SOURCE_DIR = /home/deb/workspace/cgol
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/deb/localdir/cgol
+CMAKE_BINARY_DIR = /home/deb/workspace/cgol
 
 # Include any dependencies generated for this target.
 include CMakeFiles/cgol.dir/depend.make
@@ -68,42 +68,42 @@ include CMakeFiles/cgol.dir/flags.make
 
 CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.o: CMakeFiles/cgol.dir/flags.make
 CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.o: cgol_autogen/mocs_compilation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/deb/localdir/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.o -c /home/deb/localdir/cgol/cgol_autogen/mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/deb/workspace/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.o -c /home/deb/workspace/cgol/cgol_autogen/mocs_compilation.cpp
 
 CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/deb/localdir/cgol/cgol_autogen/mocs_compilation.cpp > CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/deb/workspace/cgol/cgol_autogen/mocs_compilation.cpp > CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.i
 
 CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/deb/localdir/cgol/cgol_autogen/mocs_compilation.cpp -o CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/deb/workspace/cgol/cgol_autogen/mocs_compilation.cpp -o CMakeFiles/cgol.dir/cgol_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/cgol.dir/cgolQWidget.cpp.o: CMakeFiles/cgol.dir/flags.make
 CMakeFiles/cgol.dir/cgolQWidget.cpp.o: cgolQWidget.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/deb/localdir/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cgol.dir/cgolQWidget.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cgol.dir/cgolQWidget.cpp.o -c /home/deb/localdir/cgol/cgolQWidget.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/deb/workspace/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cgol.dir/cgolQWidget.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cgol.dir/cgolQWidget.cpp.o -c /home/deb/workspace/cgol/cgolQWidget.cpp
 
 CMakeFiles/cgol.dir/cgolQWidget.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cgol.dir/cgolQWidget.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/deb/localdir/cgol/cgolQWidget.cpp > CMakeFiles/cgol.dir/cgolQWidget.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/deb/workspace/cgol/cgolQWidget.cpp > CMakeFiles/cgol.dir/cgolQWidget.cpp.i
 
 CMakeFiles/cgol.dir/cgolQWidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cgol.dir/cgolQWidget.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/deb/localdir/cgol/cgolQWidget.cpp -o CMakeFiles/cgol.dir/cgolQWidget.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/deb/workspace/cgol/cgolQWidget.cpp -o CMakeFiles/cgol.dir/cgolQWidget.cpp.s
 
 CMakeFiles/cgol.dir/cgolQApp.cpp.o: CMakeFiles/cgol.dir/flags.make
 CMakeFiles/cgol.dir/cgolQApp.cpp.o: cgolQApp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/deb/localdir/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cgol.dir/cgolQApp.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cgol.dir/cgolQApp.cpp.o -c /home/deb/localdir/cgol/cgolQApp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/deb/workspace/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cgol.dir/cgolQApp.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cgol.dir/cgolQApp.cpp.o -c /home/deb/workspace/cgol/cgolQApp.cpp
 
 CMakeFiles/cgol.dir/cgolQApp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cgol.dir/cgolQApp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/deb/localdir/cgol/cgolQApp.cpp > CMakeFiles/cgol.dir/cgolQApp.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/deb/workspace/cgol/cgolQApp.cpp > CMakeFiles/cgol.dir/cgolQApp.cpp.i
 
 CMakeFiles/cgol.dir/cgolQApp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cgol.dir/cgolQApp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/deb/localdir/cgol/cgolQApp.cpp -o CMakeFiles/cgol.dir/cgolQApp.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/deb/workspace/cgol/cgolQApp.cpp -o CMakeFiles/cgol.dir/cgolQApp.cpp.s
 
 # Object files for target cgol
 cgol_OBJECTS = \
@@ -123,7 +123,7 @@ cgol: /home/deb/Qt/6.1.3/gcc_64/lib/libQt6Gui.so.6.1.3
 cgol: /usr/lib/x86_64-linux-gnu/libGL.so
 cgol: /home/deb/Qt/6.1.3/gcc_64/lib/libQt6Core.so.6.1.3
 cgol: CMakeFiles/cgol.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/deb/localdir/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable cgol"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/deb/workspace/cgol/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable cgol"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cgol.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -135,6 +135,6 @@ CMakeFiles/cgol.dir/clean:
 .PHONY : CMakeFiles/cgol.dir/clean
 
 CMakeFiles/cgol.dir/depend:
-	cd /home/deb/localdir/cgol && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/deb/localdir/cgol /home/deb/localdir/cgol /home/deb/localdir/cgol /home/deb/localdir/cgol /home/deb/localdir/cgol/CMakeFiles/cgol.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/deb/workspace/cgol && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/deb/workspace/cgol /home/deb/workspace/cgol /home/deb/workspace/cgol /home/deb/workspace/cgol /home/deb/workspace/cgol/CMakeFiles/cgol.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/cgol.dir/depend
 
