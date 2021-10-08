@@ -8,9 +8,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_PREFIX_PATH "/home/deb/Qt/6.1.3/gcc_64")
 
 set(PROJECT_SOURCES
-    cgolQWidget.cpp
-    cgolQWidget.h
-    cgolQApp.cpp)
+    widget.cpp
+    widget.h
+    app.cpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 

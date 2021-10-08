@@ -1,11 +1,11 @@
-#include "cgolQWidget.h"
+#include "widget.h"
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QDir>
 #include <QDebug>
 #include <QRandomGenerator>
 
-void CgolQWidget::varUpdates()
+void Widget::varUpdates()
 {
     NUM_OF_CELLS = ROWS_AND_COLUMNS * ROWS_AND_COLUMNS;
     GRID_PXL_DIM = 12 * ROWS_AND_COLUMNS;
@@ -19,7 +19,7 @@ void CgolQWidget::varUpdates()
     SOUTH_CELL = ROWS_AND_COLUMNS;
 }
 
-void CgolQWidget::buttons(bool repaint)
+void Widget::buttons(bool repaint)
 {
     if (repaint)
     {
@@ -51,7 +51,7 @@ void CgolQWidget::buttons(bool repaint)
     update();
 }
 
-CgolQWidget::CgolQWidget(QWidget *parent) : QWidget(parent)
+Widget::Widget(QWidget *parent) : QWidget(parent)
 {
     this->setGeometry(WINDOW_SIZE);
     this->show();
@@ -65,7 +65,7 @@ CgolQWidget::CgolQWidget(QWidget *parent) : QWidget(parent)
     buttons(false);
 }
 
-void CgolQWidget::updateGrid()
+void Widget::updateGrid()
 {
     this->checkCells();
     this->performChanges();
@@ -73,7 +73,7 @@ void CgolQWidget::updateGrid()
     update();
 }
 
-void CgolQWidget::regenerate()
+void Widget::regenerate()
 {
     int *setState = new int;
 
@@ -98,7 +98,7 @@ void CgolQWidget::regenerate()
     setState = nullptr;
 }
 
-void CgolQWidget::paintEvent(QPaintEvent *)
+void Widget::paintEvent(QPaintEvent *)
 {
     QPainter bigbadwolf(this);
     for (int i = 0; i < CELL_PXL_DIM * ROWS_AND_COLUMNS + 1; i += CELL_PXL_DIM)
@@ -115,7 +115,7 @@ void CgolQWidget::paintEvent(QPaintEvent *)
     }
 }
 
-void CgolQWidget::checkCells()
+void Widget::checkCells()
 {
 
     // reset neighbours
@@ -170,7 +170,7 @@ void CgolQWidget::checkCells()
     }
 }
 
-void CgolQWidget::performChanges()
+void Widget::performChanges()
 {
 
     cellsNextGen = cells;
@@ -196,7 +196,7 @@ void CgolQWidget::performChanges()
     }
 }
 
-void CgolQWidget::saveToJson()
+void Widget::saveToJson()
 {
     QDir::setCurrent("../Resources/");
     QFile file;
@@ -212,7 +212,7 @@ void CgolQWidget::saveToJson()
     file.close();
 }
 
-void CgolQWidget::loadCustom()
+void Widget::loadCustom()
 {
 
     for (int i = 0; i < NUM_OF_CELLS; i++)
@@ -233,7 +233,7 @@ void CgolQWidget::loadCustom()
     update();
 }
 
-void CgolQWidget::gridSize()
+void Widget::gridSize()
 {
     //  this->customGridSizeInput->show();
     bool done;

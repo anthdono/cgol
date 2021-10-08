@@ -1,5 +1,5 @@
-#ifndef CGOLQWIDGET_H
-#define CGOLQWIDGET_H
+#ifndef WIDGET_H
+#define WIDGET_H
 
 #include <QPainter>
 #include <QPushButton>
@@ -18,12 +18,12 @@ struct cell
     int neighbours;
 };
 
-class CgolQWidget : public QWidget
+class Widget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit CgolQWidget(QWidget *parent = nullptr);
+    explicit Widget(QWidget *parent = nullptr);
 
     int ROWS_AND_COLUMNS = 50;
     int NUM_OF_CELLS = ROWS_AND_COLUMNS * ROWS_AND_COLUMNS;
