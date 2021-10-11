@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QRandomGenerator>
 #include <QLineEdit>
+#include <unistd.h>
 
 void Widget::varUpdates() {
     NUM_OF_CELLS = ROWS_AND_COLUMNS * ROWS_AND_COLUMNS;
@@ -51,6 +52,10 @@ void Widget::buttons(bool repaint) {
     this->spawnDensityButton->setText("density");
     this->spawnDensityButton->show();
 
+    this->autoUpdateButton->move(((GRID_PXL_DIM / 7) * 6) + WINDOW_BUFFER, BUTTON_Y);
+    this->autoUpdateButton->setText("auto");
+    this->autoUpdateButton->show();
+
     update();
 }
 
@@ -64,6 +69,7 @@ Widget::Widget(QWidget *parent) : QWidget(parent) {
     connect(loadCustomButton, SIGNAL(clicked()), this, SLOT(loadCustom()));
     connect(customGridSizeButton, SIGNAL(clicked()), this, SLOT(gridSize()));
     connect(spawnDensityButton, SIGNAL(clicked()), this, SLOT(updateSpawnDensity()));
+    connect(autoUpdateButton, SIGNAL(clicked()), this, SLOT(autoUpdate()));
 
     buttons(false);
 }
@@ -242,7 +248,19 @@ void Widget::gridSize() {
 void Widget::updateSpawnDensity() {
     bool done;
     this->spawn_density = QInputDialog::getInt(this, tr("spawn density"), tr("enter spawn density"), 7, 0, 999, 1,
-                                   &done);
+                                               &done);
     regenerate();
+}
+
+void Widget::autoUpdate() {
+    unsigned int wait = 500000;
+
+    for (int i = 0; i < 40; ++i) {
+        updateGrid();
+        repaint();
+        usleep(wait);
+    }
+
+
 }
 

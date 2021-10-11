@@ -55,11 +55,7 @@ public:
     QPushButton* loadCustomButton = new QPushButton(this);
     QPushButton* customGridSizeButton = new QPushButton(this);
     QPushButton* spawnDensityButton = new QPushButton(this);
-
-
-
-
-    // button for "auto refresh mode"
+    QPushButton* autoUpdateButton = new QPushButton(this);
 
 public slots:
     void updateGrid();
@@ -68,6 +64,7 @@ public slots:
     void loadCustom();
     void gridSize();
     void updateSpawnDensity();
+    void autoUpdate();
 };
 
 #endif // CGOLQWIDGET_H

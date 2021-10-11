@@ -1635,6 +1635,8 @@ QRandomGenerator
 -
 QLineEdit
 -
+unistd.h
+-
 
 /home/deb/workspace/cgol/widget.h
 QPainter
