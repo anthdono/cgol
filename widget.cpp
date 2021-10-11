@@ -4,13 +4,14 @@
 #include <QDir>
 #include <QDebug>
 #include <QRandomGenerator>
+#include <QLineEdit>
 
-void Widget::varUpdates()
-{
+void Widget::varUpdates() {
     NUM_OF_CELLS = ROWS_AND_COLUMNS * ROWS_AND_COLUMNS;
     GRID_PXL_DIM = 12 * ROWS_AND_COLUMNS;
     CELL_PXL_DIM = GRID_PXL_DIM / ROWS_AND_COLUMNS;
-    WINDOW_SIZE = QRect(SCREEN_POS, SCREEN_POS, GRID_PXL_DIM + (WINDOW_BUFFER * 2), GRID_PXL_DIM + WINDOW_BUFFER + GRID_PXL_DIM / 10);
+    WINDOW_SIZE = QRect(SCREEN_POS, SCREEN_POS, GRID_PXL_DIM + (WINDOW_BUFFER * 2),
+                        GRID_PXL_DIM + WINDOW_BUFFER + GRID_PXL_DIM / 10);
     BUTTON_Y = GRID_PXL_DIM + 10;
     cells = QVector<cell>(NUM_OF_CELLS);
     cellsNextGen = QVector<cell>(NUM_OF_CELLS);
@@ -19,10 +20,8 @@ void Widget::varUpdates()
     SOUTH_CELL = ROWS_AND_COLUMNS;
 }
 
-void Widget::buttons(bool repaint)
-{
-    if (repaint)
-    {
+void Widget::buttons(bool repaint) {
+    if (repaint) {
         this->updateButton->hide();
         varUpdates();
         this->setGeometry(WINDOW_SIZE);
@@ -48,11 +47,14 @@ void Widget::buttons(bool repaint)
     this->customGridSizeButton->setText("gridsize");
     this->customGridSizeButton->show();
 
+    this->spawnDensityButton->move(((GRID_PXL_DIM / 7) * 5) + WINDOW_BUFFER, BUTTON_Y);
+    this->spawnDensityButton->setText("density");
+    this->spawnDensityButton->show();
+
     update();
 }
 
-Widget::Widget(QWidget *parent) : QWidget(parent)
-{
+Widget::Widget(QWidget *parent) : QWidget(parent) {
     this->setGeometry(WINDOW_SIZE);
     this->show();
 
@@ -61,25 +63,23 @@ Widget::Widget(QWidget *parent) : QWidget(parent)
     connect(saveToJsonButton, SIGNAL(clicked()), this, SLOT(saveToJson()));
     connect(loadCustomButton, SIGNAL(clicked()), this, SLOT(loadCustom()));
     connect(customGridSizeButton, SIGNAL(clicked()), this, SLOT(gridSize()));
+    connect(spawnDensityButton, SIGNAL(clicked()), this, SLOT(updateSpawnDensity()));
 
     buttons(false);
 }
 
-void Widget::updateGrid()
-{
+void Widget::updateGrid() {
     this->checkCells();
     this->performChanges();
     cells = cellsNextGen;
     update();
 }
 
-void Widget::regenerate()
-{
+void Widget::regenerate() {
     int *setState = new int;
 
-    for (int i = 0; i < NUM_OF_CELLS; i++)
-    {
-        *setState = QRandomGenerator::global()->bounded(SPAWN_DENSITY);
+    for (int i = 0; i < NUM_OF_CELLS; i++) {
+        *setState = QRandomGenerator::global()->bounded(spawn_density);
 
         if (*setState == 1)
             this->cells[i].state = true;
@@ -98,32 +98,30 @@ void Widget::regenerate()
     setState = nullptr;
 }
 
-void Widget::paintEvent(QPaintEvent *)
-{
+void Widget::paintEvent(QPaintEvent *) {
     QPainter bigbadwolf(this);
-    for (int i = 0; i < CELL_PXL_DIM * ROWS_AND_COLUMNS + 1; i += CELL_PXL_DIM)
-    {
-        bigbadwolf.drawLine(WINDOW_BUFFER, i + WINDOW_BUFFER, CELL_PXL_DIM * ROWS_AND_COLUMNS + WINDOW_BUFFER, i + WINDOW_BUFFER);
-        bigbadwolf.drawLine(i + WINDOW_BUFFER, WINDOW_BUFFER, i + WINDOW_BUFFER, CELL_PXL_DIM * ROWS_AND_COLUMNS + WINDOW_BUFFER);
+    for (int i = 0; i < CELL_PXL_DIM * ROWS_AND_COLUMNS + 1; i += CELL_PXL_DIM) {
+        bigbadwolf.drawLine(WINDOW_BUFFER, i + WINDOW_BUFFER, CELL_PXL_DIM * ROWS_AND_COLUMNS + WINDOW_BUFFER,
+                            i + WINDOW_BUFFER);
+        bigbadwolf.drawLine(i + WINDOW_BUFFER, WINDOW_BUFFER, i + WINDOW_BUFFER,
+                            CELL_PXL_DIM * ROWS_AND_COLUMNS + WINDOW_BUFFER);
     }
-    for (int i = 0; i < NUM_OF_CELLS; i++)
-    {
-        if (cells[i].state)
-        {
-            bigbadwolf.fillRect(QRect(WINDOW_BUFFER + cells[i].x * CELL_PXL_DIM, WINDOW_BUFFER + cells[i].y * CELL_PXL_DIM, CELL_PXL_DIM, CELL_PXL_DIM), FULL_CELL);
+    for (int i = 0; i < NUM_OF_CELLS; i++) {
+        if (cells[i].state) {
+            bigbadwolf.fillRect(
+                    QRect(WINDOW_BUFFER + cells[i].x * CELL_PXL_DIM, WINDOW_BUFFER + cells[i].y * CELL_PXL_DIM,
+                          CELL_PXL_DIM, CELL_PXL_DIM), FULL_CELL);
         }
     }
 }
 
-void Widget::checkCells()
-{
+void Widget::checkCells() {
 
     // reset neighbours
     for (int i = 0; i < NUM_OF_CELLS; i++)
         cells[i].neighbours = 0;
 
-    for (int i = 0; i < NUM_OF_CELLS; i++)
-    {
+    for (int i = 0; i < NUM_OF_CELLS; i++) {
 
         // NORTH CELL ––working––
         if (i > ROWS_AND_COLUMNS - 1)
@@ -170,13 +168,11 @@ void Widget::checkCells()
     }
 }
 
-void Widget::performChanges()
-{
+void Widget::performChanges() {
 
     cellsNextGen = cells;
 
-    for (int i = 0; i < NUM_OF_CELLS; i++)
-    {
+    for (int i = 0; i < NUM_OF_CELLS; i++) {
 
         // any live cell with fewer than two neighbours dies
         if (cells[i].state && cells[i].neighbours < 2)
@@ -196,8 +192,7 @@ void Widget::performChanges()
     }
 }
 
-void Widget::saveToJson()
-{
+void Widget::saveToJson() {
     QDir::setCurrent("../Resources/");
     QFile file;
     file.setFileName("save.json");
@@ -212,11 +207,9 @@ void Widget::saveToJson()
     file.close();
 }
 
-void Widget::loadCustom()
-{
+void Widget::loadCustom() {
 
-    for (int i = 0; i < NUM_OF_CELLS; i++)
-    {
+    for (int i = 0; i < NUM_OF_CELLS; i++) {
         this->cells[i].state = false;
 
         cells[i].x = i % ROWS_AND_COLUMNS;
@@ -233,15 +226,23 @@ void Widget::loadCustom()
     update();
 }
 
-void Widget::gridSize()
-{
+void Widget::gridSize() {
     //  this->customGridSizeInput->show();
     bool done;
-    int res = QInputDialog::getInt(this, tr("QInputDialog::getInt()"), tr("grid size"), ROWS_AND_COLUMNS, 0, 100, 1, &done);
+    int res = QInputDialog::getInt(this, tr("grid size"), tr("enter grid size"), ROWS_AND_COLUMNS, 0, 100, 1,
+                                   &done);
 
-    if (done)
-    {
+    if (done) {
         this->ROWS_AND_COLUMNS = res;
         buttons(true);
     }
 }
+
+
+void Widget::updateSpawnDensity() {
+    bool done;
+    this->spawn_density = QInputDialog::getInt(this, tr("spawn density"), tr("enter spawn density"), 7, 0, 999, 1,
+                                   &done);
+    regenerate();
+}
+

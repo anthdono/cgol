@@ -7,8 +7,7 @@
 #include <QString>
 #include <QInputDialog>
 #include <QLineEdit>
-
-#define SPAWN_DENSITY 10
+#include <QInputDialog>
 
 struct cell
 {
@@ -24,6 +23,8 @@ class Widget : public QWidget
 
 public:
     explicit Widget(QWidget *parent = nullptr);
+
+    int spawn_density = 10;
 
     int ROWS_AND_COLUMNS = 50;
     int NUM_OF_CELLS = ROWS_AND_COLUMNS * ROWS_AND_COLUMNS;
@@ -48,13 +49,16 @@ public:
     void varUpdates();
     virtual void paintEvent(QPaintEvent *);
 
-    QPushButton *updateButton = new QPushButton(this);
-    QPushButton *regenButton = new QPushButton(this);
-    QPushButton *saveToJsonButton = new QPushButton(this);
-    QPushButton *loadCustomButton = new QPushButton(this);
-    QPushButton *customGridSizeButton = new QPushButton(this);
+    QPushButton* updateButton = new QPushButton(this);
+    QPushButton* regenButton = new QPushButton(this);
+    QPushButton* saveToJsonButton = new QPushButton(this);
+    QPushButton* loadCustomButton = new QPushButton(this);
+    QPushButton* customGridSizeButton = new QPushButton(this);
+    QPushButton* spawnDensityButton = new QPushButton(this);
 
-    // button for "spawn density"
+
+
+
     // button for "auto refresh mode"
 
 public slots:
@@ -63,6 +67,7 @@ public slots:
     void saveToJson();
     void loadCustom();
     void gridSize();
+    void updateSpawnDensity();
 };
 
 #endif // CGOLQWIDGET_H
