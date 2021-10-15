@@ -272,6 +272,22 @@ limits.h
 new
 -
 
+/home/deb/Qt/6.1.3/gcc_64/include/QtCore/qcoreapplication.h
+QtCore/qglobal.h
+-
+QtCore/qstring.h
+-
+QtCore/qobject.h
+-
+QtCore/qcoreevent.h
+-
+QtCore/qeventloop.h
+-
+QtCore/qscopedpointer.h
+-
+QtCore/qdebug.h
+-
+
 /home/deb/Qt/6.1.3/gcc_64/include/QtCore/qcoreevent.h
 QtCore/qnamespace.h
 -
@@ -340,6 +356,10 @@ QtCore/qfileinfo.h
 QtCore/qstringlist.h
 -
 QtCore/qshareddata.h
+-
+
+/home/deb/Qt/6.1.3/gcc_64/include/QtCore/qeventloop.h
+QtCore/qobject.h
 -
 
 /home/deb/Qt/6.1.3/gcc_64/include/QtCore/qfile.h
@@ -1228,6 +1248,22 @@ QtCore/qsharedpointer.h
 QtCore/qrect.h
 -
 
+/home/deb/Qt/6.1.3/gcc_64/include/QtGui/qguiapplication.h
+QtGui/qtguiglobal.h
+-
+QtCore/qcoreapplication.h
+-
+QtGui/qwindowdefs.h
+-
+QtGui/qinputmethod.h
+-
+QtCore/qlocale.h
+-
+QtCore/qpoint.h
+-
+QtCore/qsize.h
+-
+
 /home/deb/Qt/6.1.3/gcc_64/include/QtGui/qicon.h
 QtGui/qtguiglobal.h
 -
@@ -1266,6 +1302,12 @@ QtGui/qtguiglobal.h
 QtCore/qobject.h
 -
 QtGui/qscreen.h
+-
+
+/home/deb/Qt/6.1.3/gcc_64/include/QtGui/qinputmethod.h
+QtGui/qtguiglobal.h
+-
+QtCore/qobject.h
 -
 
 /home/deb/Qt/6.1.3/gcc_64/include/QtGui/qkeysequence.h
@@ -1510,6 +1552,10 @@ QtGui/qwindowdefs_win.h
 QtGui/qtguiglobal.h
 -
 
+/home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/QApplication
+qapplication.h
+/home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qapplication.h
+
 /home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/QInputDialog
 qinputdialog.h
 /home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qinputdialog.h
@@ -1522,6 +1568,10 @@ qlineedit.h
 qpushbutton.h
 /home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qpushbutton.h
 
+/home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/QStyleFactory
+qstylefactory.h
+/home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qstylefactory.h
+
 /home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qabstractbutton.h
 QtWidgets/qtwidgetsglobal.h
 -
@@ -1530,6 +1580,22 @@ QtGui/qicon.h
 QtGui/qkeysequence.h
 -
 QtWidgets/qwidget.h
+-
+
+/home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qapplication.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtCore/qcoreapplication.h
+-
+QtGui/qwindowdefs.h
+-
+QtCore/qpoint.h
+-
+QtCore/qsize.h
+-
+QtGui/qcursor.h
+-
+QtGui/qguiapplication.h
 -
 
 /home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qdialog.h
@@ -1580,6 +1646,12 @@ QtCore/qobject.h
 QtCore/qalgorithms.h
 -
 
+/home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qstylefactory.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtCore/qstringlist.h
+-
+
 /home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qtwidgets-config.h
 
 /home/deb/Qt/6.1.3/gcc_64/include/QtWidgets/qtwidgetsglobal.h
@@ -1619,6 +1691,28 @@ QtGui/qkeysequence.h
 -
 QtGui/qevent.h
 -
+
+/home/deb/workspace/cgol/app.cpp
+widget.h
+/home/deb/workspace/cgol/widget.h
+QApplication
+-
+QStyleFactory
+-
+
+/home/deb/workspace/cgol/cgol_autogen/EWIEGA46WW/moc_widget.cpp
+memory
+-
+../../widget.h
+/home/deb/workspace/cgol/widget.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/deb/workspace/cgol/cgol_autogen/mocs_compilation.cpp
+EWIEGA46WW/moc_widget.cpp
+/home/deb/workspace/cgol/cgol_autogen/EWIEGA46WW/moc_widget.cpp
 
 /home/deb/workspace/cgol/widget.cpp
 widget.h
