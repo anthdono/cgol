@@ -1,3 +1,5 @@
+CMakeFiles*
+
 # macos
 .DS_Store
 
